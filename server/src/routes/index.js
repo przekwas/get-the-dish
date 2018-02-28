@@ -16,6 +16,6 @@ let router = Router();
 //     .delete(tokenMiddleware, isLoggedIn);
 
 router.use('/type', typeRouter);
-router.use('/item', itemRouter);
+router.use('/items', itemRouter);
 
 export default router;
