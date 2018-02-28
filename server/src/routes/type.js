@@ -2,11 +2,11 @@ import { Router } from 'express';
 import Table from '../table';
 
 let router = Router();
-let classTable = new Table('type');
+let typeTable = new Table('type');
 
 router.get('/', (req, res) => {
     console.log(req.user);
-    classTable.getAll()
+    typeTable.getAll()
     .then((results) => {
         res.json(results);
     }).catch((err) => {
