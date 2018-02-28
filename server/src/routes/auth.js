@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import passport from 'passport';
+// import passport from 'passport';
 import { encode } from '../utils/tokens';
 
 let router = Router();
@@ -14,7 +14,8 @@ router.post('/login', (req, res, next) => {
         } else {
             return res.status(201).json(token);
         }
-    })(req, res, next);
+    })
+    (req, res, next);
 });
 
 export default router;
