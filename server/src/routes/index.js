@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import typeRouter from './type';
 import itemRouter from './item';
+import testRouter from './test';
 // import authRouter from './auth';
 // import stripeDonationsRouter from './stripeDonations';
 // import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
@@ -17,5 +18,6 @@ let router = Router();
 
 router.use('/type', typeRouter);
 router.use('/items', itemRouter);
+router.use('/test', testRouter);
 
 export default router;
