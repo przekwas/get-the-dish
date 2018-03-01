@@ -14,6 +14,12 @@ class Table {
         .then((results) => results[0]);
     }
 
+    getItemsOfType(id) {
+        let sql = `SELECT * FROM ${this.tableName} WHERE type_id = ${id};`;
+        return executeQuery(sql, [id])
+        .then((results) => results[0]);
+    }
+
     getAll() {
         let sql = `SELECT * FROM ${this.tableName}`;
         return executeQuery(sql);

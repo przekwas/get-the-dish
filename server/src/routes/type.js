@@ -3,6 +3,7 @@ import Table from '../table';
 
 let router = Router();
 let typeTable = new Table('type');
+let itemTable = new Table('food_item');
 
 //GET route for all types
 router.get('/', (req, res) => {
@@ -16,12 +17,12 @@ router.get('/', (req, res) => {
     });
 });
 
-//GET route for single type
+//GET route for items of a single type
 router.get('/:id', (req, res) => {
 
     let id = req.params.id;
 
-     typeTable.getOne(id)
+     itemTable.getItemsOfType(id)
     .then((results) => {
         res.json(results);
     }).catch((err) => {
