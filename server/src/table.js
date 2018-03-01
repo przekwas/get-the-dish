@@ -11,14 +11,14 @@ class Table {
     getOne(id) {
         let sql = `SELECT * FROM ${this.tableName} WHERE id = ${id};`;
         return executeQuery(sql, [id])
-        .then((results) => results[0]);
+            .then((results) => results[0]);
     }
 
     //Get list of items of a certain type, ie all food items associated with type pizza returned when looking at type pizza
     getItemsOfType(id) {
         let sql = `SELECT * FROM ${this.tableName} WHERE type_id = ${id};`;
         return executeQuery(sql, [id])
-        .then((results) => results[0]);
+            .then((results) => results[0]);
     }
 
     getAll() {
@@ -28,18 +28,71 @@ class Table {
 
     //Get all food items with joins on restaurant_id and type_id to get their respective names
     getAllItems() {
-        let sql = 
-        `SELECT
+        let sql =
+            `SELECT
         fi.name as Name,
+        fi.rating as Rating,
+        fi.price as Price,
         t.name as FoodType,
         r.name as RestaurantName,
-        fi.rating as Rating,
-        fi.price as Price
+        r.latitude as RestLat,
+        r.longitude as RestLong,
+        r.phone as Phone,
+        r.address as StreetAddress,
+        r.city as City,
+        r.state as State,
+        r.postal_code as PostalCode
     FROM food_item fi
     JOIN type t on t.id = fi.type_id
     JOIN restaurants r on r.id = fi.restaurant_id`;
-
         return executeQuery(sql);
+    }
+
+    getRankedPaniniTestMethod() {
+        let sql =
+            `SELECT
+        fi.name as Name,
+        fi.rating as Rating,
+        fi.price as Price,
+        t.name as FoodType,
+        r.name as RestaurantName,
+        r.latitude as RestLat,
+        r.longitude as RestLong,
+        r.phone as Phone,
+        r.address as StreetAddress,
+        r.city as City,
+        r.state as State,
+        r.postal_code as PostalCode
+    FROM food_item fi
+    JOIN type t on t.id = fi.type_id
+    JOIN restaurants r on r.id = fi.restaurant_id
+    WHERE type_id = 1
+    ORDER BY Rating DESC;`;
+        return executeQuery(sql);
+    }
+
+    getRankedItemsOfType(id) {
+        let sql =
+            `SELECT
+        fi.name as Name,
+        fi.rating as Rating,
+        fi.price as Price,
+        t.name as FoodType,
+        r.name as RestaurantName,
+        r.latitude as RestLat,
+        r.longitude as RestLong,
+        r.phone as Phone,
+        r.address as StreetAddress,
+        r.city as City,
+        r.state as State,
+        r.postal_code as PostalCode
+    FROM food_item fi
+    JOIN type t on t.id = fi.type_id
+    JOIN restaurants r on r.id = fi.restaurant_id
+    WHERE type_id = ${id}
+    ORDER BY Rating DESC`;
+        return executeQuery(sql, [id])
+            .then((results) => results[0]);
     }
 
     find(query) {
@@ -58,7 +111,7 @@ class Table {
         let placeholderString = generatePlaceholders(values);
         let sql = `INSERT INTO ${this.tableName} (${columns.join(',')}) VALUES (${placeholderString});`;
         return executeQuery(sql, values)
-        .then((results) => ({id: results.insertId }));
+            .then((results) => ({ id: results.insertId }));
     }
 
     update(id, row) {
