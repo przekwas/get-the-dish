@@ -25,6 +25,20 @@ class Table {
         return executeQuery(sql);
     }
 
+    getAllItems() {
+        let sql = 
+        `SELECT
+        fi.name as Name,
+        t.name as FoodType,
+        r.name as RestaurantName,
+        fi.rating as Rating
+    FROM food_item fi
+    JOIN type t on t.id = fi.type_id
+    JOIN restaurants r on r.id = fi.restaurant_id`;
+    
+        return executeQuery(sql);
+    }
+
     find(query) {
         let columns = Object.keys(query);
         let values = Object.values(query);

@@ -7,7 +7,7 @@ let itemTable = new Table('food_item');
 //GET route for all food items
 router.get('/', (req, res) => {
 
-    itemTable.getAll()
+    itemTable.getAllItems()
     .then((results) => {
         res.json(results);
     }).catch((err) => {
