@@ -14,6 +14,7 @@ class Table {
         .then((results) => results[0]);
     }
 
+    //Get list of items of a certain type, ie all food items associated with type pizza returned when looking at type pizza
     getItemsOfType(id) {
         let sql = `SELECT * FROM ${this.tableName} WHERE type_id = ${id};`;
         return executeQuery(sql, [id])
@@ -25,17 +26,19 @@ class Table {
         return executeQuery(sql);
     }
 
+    //Get all food items with joins on restaurant_id and type_id to get their respective names
     getAllItems() {
         let sql = 
         `SELECT
         fi.name as Name,
         t.name as FoodType,
         r.name as RestaurantName,
-        fi.rating as Rating
+        fi.rating as Rating,
+        fi.price as Price
     FROM food_item fi
     JOIN type t on t.id = fi.type_id
     JOIN restaurants r on r.id = fi.restaurant_id`;
-    
+
         return executeQuery(sql);
     }
 
