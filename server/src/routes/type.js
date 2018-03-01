@@ -5,7 +5,7 @@ let router = Router();
 let typeTable = new Table('type');
 let itemTable = new Table('food_item');
 
-//GET route for all types
+//GET route for all food types
 router.get('/', (req, res) => {
     console.log(req.user);
     typeTable.getAll()
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     });
 });
 
-//GET route for items of a single type
+//GET route for food items of a single food type
 router.get('/:id', (req, res) => {
 
     let id = req.params.id;

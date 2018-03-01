@@ -4,7 +4,7 @@ import Table from '../table';
 let router = Router();
 let itemTable = new Table('food_item');
 
-//GET route for all items
+//GET route for all food items
 router.get('/', (req, res) => {
 
     itemTable.getAll()
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 });
 
 
-//GET route for single item
+//GET route for a single food item
 router.get('/:id', (req, res) => {
 
     let id = req.params.id;
