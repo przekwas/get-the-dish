@@ -130,4 +130,14 @@ class Table {
     }
 }
 
+export const hesSoHotRightNow = () => {
+    let sql = `SELECT 
+    food_item._created as Date,
+    food_item.name as Name
+    FROM food_item
+    ORDER BY _created DESC
+    LIMIT 3`;
+    return executeQuery(sql);
+}
+
 export default Table;

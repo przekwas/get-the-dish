@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Table from '../table';
+import Table, { hesSoHotRightNow } from '../table';
 
 let router = Router();
 let itemTable = new Table('food_item');
@@ -24,6 +24,19 @@ router.get('/:id', (req, res) => {
     let id = req.params.id;
 
      itemTable.getOne(id)
+    .then((results) => {
+        res.json(results);
+    }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+    });
+
+});
+
+//Testing out custom methods on a test route
+router.get('/test', (req, res) => {
+
+    hesSoHotRightNow()
     .then((results) => {
         res.json(results);
     }).catch((err) => {
