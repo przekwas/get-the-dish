@@ -18,12 +18,12 @@ router.get('/', (req, res) => {
 });
 
 
-//GET route for a single food item
+//GET route for a single food item type
 router.get('/:id', (req, res) => {
 
     let id = req.params.id;
 
-     itemTable.getOne(id)
+     itemTable.getRankedItemsOfType(id)
     .then((results) => {
         res.json(results);
     }).catch((err) => {
