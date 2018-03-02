@@ -37,7 +37,7 @@ class Table {
         r.name as RestaurantName,
         r.latitude as RestLat,
         r.longitude as RestLong,
-        r.phone as Phone,
+        r.display_phone as Phone,
         r.address as StreetAddress,
         r.city as City,
         r.state as State,
