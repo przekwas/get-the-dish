@@ -53,7 +53,7 @@ class Table {
             `SELECT
         fi.name as Name,
         fi.rating as Rating,
-        fi.price as Price,
+        FORMAT(fi.price, 2) as Price,
         t.name as FoodType,
         r.name as RestaurantName,
         r.latitude as RestLat,
