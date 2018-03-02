@@ -92,7 +92,7 @@ class Table {
     WHERE type_id = ${id}
     ORDER BY Rating DESC`;
         return executeQuery(sql, [id])
-            .then((results) => results[0]);
+            // .then((results) => results[0]);
     }
 
     find(query) {
