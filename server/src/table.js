@@ -113,13 +113,8 @@ class Table {
         let sql =
             `UPDATE food_item fi
         SET rating = rating + 1
-        WHERE fi.id = ${id};
-
-            SELECT
-        fi.rating AS Rating
-        FROM food_item fi
         WHERE fi.id = ${id};`;
-        executeQuery(sql, [id]);
+        executeQuery(sql, [id])
         return this.getSpecificItemRating(id)
     }
 
