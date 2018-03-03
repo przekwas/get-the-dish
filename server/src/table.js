@@ -79,6 +79,7 @@ class Table {
     getRankedItemsOfType(id) {
         let sql =
             `SELECT
+            fi.id as id,
             fi.name as Name,
             fi.rating as Rating,
             FORMAT(fi.price, 2) as Price,
