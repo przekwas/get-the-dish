@@ -1,27 +1,30 @@
 import { Router } from 'express';
-import Table from '../table';
+import Table, { hesSoHotRightNow } from '../table';
 
 let router = Router();
-let typeTable = new Table('type');
+let itemTable = new Table('food_item');
 
-//GET route for all food types
-router.get('/', (req, res) => {
+//GET route for specifically pulling the rating of a specific item
+router.get('/:id', (req, res) => {
 
-    typeTable.getAll()
+    let id = req.params.id;
+
+    itemTable.getSpecificItemRating(id)
     .then((results) => {
         res.json(results);
     }).catch((err) => {
         console.log(err);
         res.sendStatus(500);
     });
+
 });
 
-//GET route for food items of a single food type
-router.get('/:id', (req, res) => {
+//PUT route to add one to a specific item's rating
+router.put('/:id',(req, res) => {
 
     let id = req.params.id;
 
-     typeTable.getItemsOfType(id)
+    itemTable.addOneToSpecificItemRating(id)
     .then((results) => {
         res.json(results);
     }).catch((err) => {

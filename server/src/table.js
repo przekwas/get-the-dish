@@ -14,84 +14,9 @@ class Table {
             .then((results) => results[0]);
     }
 
-    //Get list of items of a certain type, ie all food items associated with type pizza returned when looking at type pizza
-    getItemsOfType(id) {
-        let sql = `SELECT * FROM ${this.tableName} WHERE type_id = ${id};`;
-        return executeQuery(sql, [id])
-            .then((results) => results[0]);
-    }
-
     getAll() {
         let sql = `SELECT * FROM ${this.tableName}`;
         return executeQuery(sql);
-    }
-
-    //Get all food items with joins on restaurant_id and type_id to get their respective names
-    getAllItems() {
-        let sql =
-            `SELECT
-        fi.name as Name,
-        fi.rating as Rating,
-        FORMAT(fi.price, 2) as Price,
-        t.name as FoodType,
-        r.name as RestaurantName,
-        r.latitude as RestLat,
-        r.longitude as RestLong,
-        r.display_phone as Phone,
-        r.address as StreetAddress,
-        r.city as City,
-        r.state as State,
-        r.postal_code as PostalCode
-    FROM food_item fi
-    JOIN type t on t.id = fi.type_id
-    JOIN restaurants r on r.id = fi.restaurant_id`;
-        return executeQuery(sql);
-    }
-
-    getRankedPaniniTestMethod() {
-        let sql =
-            `SELECT
-        fi.name as Name,
-        fi.rating as Rating,
-        FORMAT(fi.price, 2) as Price,
-        t.name as FoodType,
-        r.name as RestaurantName,
-        r.latitude as RestLat,
-        r.longitude as RestLong,
-        r.display_phone as Phone,
-        r.address as StreetAddress,
-        r.city as City,
-        r.state as State,
-        r.postal_code as PostalCode
-    FROM food_item fi
-    JOIN type t on t.id = fi.type_id
-    JOIN restaurants r on r.id = fi.restaurant_id
-    WHERE type_id = 1
-    ORDER BY Rating DESC;`;
-        return executeQuery(sql);
-    }
-
-    getRankedItemsOfType(id) {
-        let sql =
-            `SELECT
-        fi.name as Name,
-        fi.rating as Rating,
-        FORMAT(fi.price, 2) as Price,
-        t.name as FoodType,
-        r.name as RestaurantName,
-        r.latitude as RestLat,
-        r.longitude as RestLong,
-        r.display_phone as Phone,
-        r.address as StreetAddress,
-        r.city as City,
-        r.state as State,
-        r.postal_code as PostalCode
-    FROM food_item fi
-    JOIN type t on t.id = fi.type_id
-    JOIN restaurants r on r.id = fi.restaurant_id
-    WHERE type_id = ${id}
-    ORDER BY Rating DESC`;
-        return executeQuery(sql, [id])
     }
 
     find(query) {
@@ -127,8 +52,73 @@ class Table {
         let sql = `DELETE FROM ${this.tableName} WHERE id = ${id}`;
         return executeQuery(sql);
     }
+
+    //Get all food items with joins on restaurant_id and type_id to get their respective names
+    getAllItems() {
+        let sql =
+            `SELECT
+        fi.name as Name,
+        fi.rating as Rating,
+        FORMAT(fi.price, 2) as Price,
+        t.name as FoodType,
+        r.name as RestaurantName,
+        r.latitude as RestLat,
+        r.longitude as RestLong,
+        r.display_phone as Phone,
+        r.address as StreetAddress,
+        r.city as City,
+        r.state as State,
+        r.postal_code as PostalCode
+    FROM food_item fi
+    JOIN type t on t.id = fi.type_id
+    JOIN restaurants r on r.id = fi.restaurant_id`;
+        return executeQuery(sql);
+    }
+
+    //Get specific type food items with joins on restaurant_id and type_id to get their respective names
+    getRankedItemsOfType(id) {
+        let sql =
+            `SELECT
+            fi.name as Name,
+            fi.rating as Rating,
+            FORMAT(fi.price, 2) as Price,
+            t.name as FoodType,
+            r.name as RestaurantName,
+            r.latitude as RestLat,
+            r.longitude as RestLong,
+            r.display_phone as Phone,
+            r.address as StreetAddress,
+            r.city as City,
+            r.state as State,
+            r.postal_code as PostalCode
+        FROM food_item fi
+        JOIN type t on t.id = fi.type_id
+        JOIN restaurants r on r.id = fi.restaurant_id
+        WHERE type_id = ${id}
+        ORDER BY Rating DESC`;
+        return executeQuery(sql, [id])
+    }
+
+    getSpecificItemRating(id) {
+        let sql =
+            `SELECT
+        fi.rating as Rating
+        FROM food_item fi
+        WHERE fi.id = ${id}`;
+        return executeQuery(sql, [id])
+    }
+
+    addOneToSpecificItemRating(id) {
+        let sql =
+            `UPDATE food_item fi
+        SET rating = rating + 1
+        WHERE fi.id = 11;`;
+        return executeQuery(sql, [id])
+    }
+
 }
 
+//Test method for pulling latest 3 items added to food_items table
 export const hesSoHotRightNow = () => {
     let sql = `SELECT 
     food_item._created as Date,

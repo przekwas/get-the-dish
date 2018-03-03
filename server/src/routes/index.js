@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import typeRouter from './type';
 import itemRouter from './item';
+import ratingRouter from './rating';
 import testRouter from './test';
 // import authRouter from './auth';
 // import stripeDonationsRouter from './stripeDonations';
@@ -18,6 +19,7 @@ let router = Router();
 
 router.use('/type', typeRouter);
 router.use('/items', itemRouter);
+router.use('/rating', ratingRouter);
 router.use('/test', testRouter);
 
 export default router;

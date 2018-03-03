@@ -7,7 +7,7 @@ let itemTable = new Table('food_item');
 //GET route for all food items
 router.get('/', (req, res) => {
 
-    itemTable.getRankedPaniniTestMethod()
+    itemTable.getAllItems()
     .then((results) => {
         res.json(results);
     }).catch((err) => {
@@ -33,8 +33,8 @@ router.get('/:id', (req, res) => {
 
 });
 
-//Testing out custom methods on a test route
-router.get('/test', (req, res) => {
+//GET route for latest 3 items added into food_items table by their _created date
+router.get('/latest', (req, res) => {
 
     hesSoHotRightNow()
     .then((results) => {
