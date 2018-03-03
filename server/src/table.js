@@ -119,7 +119,8 @@ class Table {
         fi.rating AS Rating
         FROM food_item fi
         WHERE fi.id = ${id};`;
-        return executeQuery(sql, [id])
+        executeQuery(sql, [id]);
+        return this.getSpecificItemRating(id)
     }
 
 }
