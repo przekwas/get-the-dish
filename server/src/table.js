@@ -113,7 +113,12 @@ class Table {
         let sql =
             `UPDATE food_item fi
         SET rating = rating + 1
-        WHERE fi.id = ${id}`;
+        WHERE fi.id = ${id};
+
+            SELECT
+        fi.rating AS Rating
+        FROM food_item fi
+        WHERE fi.id = ${id};`;
         return executeQuery(sql, [id])
     }
 
