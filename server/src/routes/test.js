@@ -2,7 +2,7 @@ import { Router } from 'express';
 import Table, { hesSoHotRightNow } from '../table';
 
 let router = Router();
-let itemTable = new Table('food_item');
+let typeTable = new Table('type');
 
 //Testing out custom methods on a test route
 router.get('/', (req, res) => {
@@ -21,7 +21,7 @@ router.get('/search', (req, res) => {
 
     let query = req.query;
 
-    itemTable.find(query)
+    typeTable.find(query)
     .then((results) => {
         res.json(results);
     }).catch((err) => {
