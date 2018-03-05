@@ -132,6 +132,6 @@ export const hesSoHotRightNow = () => {
 }
 
 //Test method for pulling most upvoted 3 items added to food_items table
-export const 
+// export const 
 
 export default Table;
