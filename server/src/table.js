@@ -131,4 +131,7 @@ export const hesSoHotRightNow = () => {
     return executeQuery(sql);
 }
 
+//Test method for pulling most upvoted 3 items added to food_items table
+export const 
+
 export default Table;
