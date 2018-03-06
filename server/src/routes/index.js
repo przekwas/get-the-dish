@@ -3,7 +3,7 @@ import typeRouter from './type';
 import itemRouter from './items';
 import ratingRouter from './rating';
 import homescreenRouter from './homescreen';
-// import yelpRouter from './yelp';
+import yelpRouter from './yelp';
 // import authRouter from './auth';
 // import stripeDonationsRouter from './stripeDonations';
 // import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
