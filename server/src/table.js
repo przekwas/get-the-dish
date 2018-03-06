@@ -134,7 +134,8 @@ class Table {
             r.address as StreetAddress,
             r.city as City,
             r.state as State,
-            r.postal_code as PostalCode
+            r.postal_code as PostalCode,
+            fi._created as DateCreated
         FROM food_item fi
         JOIN type t on t.id = fi.type_id
         JOIN restaurants r on r.id = fi.restaurant_id
@@ -159,7 +160,8 @@ class Table {
             r.address as StreetAddress,
             r.city as City,
             r.state as State,
-            r.postal_code as PostalCode
+            r.postal_code as PostalCode,
+            fi._created as DateCreated
         FROM food_item fi
         JOIN type t on t.id = fi.type_id
         JOIN restaurants r on r.id = fi.restaurant_id
