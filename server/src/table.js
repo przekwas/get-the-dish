@@ -141,7 +141,7 @@ FROM food_item fi
 JOIN type t on t.id = fi.type_id
 JOIN restaurants r on r.id = fi.restaurant_id
 ORDER BY fi._created DESC
-LIMIT 3;`;
+LIMIT 3`;
     return executeQuery(sql);
 };
 
