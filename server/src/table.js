@@ -119,7 +119,7 @@ class Table {
     }
 
     //Method for pulling latest 3 items added to food_items table
-    threeMostRecentItems = () => {
+    threeMostRecentItems() {
         let sql =
             `SELECT 
         fi.id as id,
@@ -144,7 +144,7 @@ LIMIT 3`;
     };
 
     //Method for pulling most upvoted 3 items added to food_items table
-    threeHighestRatedItems = () => {
+    threeHighestRatedItems() {
         let sql =
             `SELECT 
             fi.id as id,
