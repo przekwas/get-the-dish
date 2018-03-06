@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Table, { threeMostRecentItems, threeHighestRatedItems } from '../table';
+import Table from '../table';
 
 let router = Router();
 let itemTable = new Table('food_item');

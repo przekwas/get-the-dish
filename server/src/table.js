@@ -118,12 +118,10 @@ class Table {
         return this.getSpecificItemRating(id)
     }
 
-}
-
-//Method for pulling latest 3 items added to food_items table
-export const threeMostRecentItems = () => {
-    let sql =
-        `SELECT 
+    //Method for pulling latest 3 items added to food_items table
+    threeMostRecentItems = () => {
+        let sql =
+            `SELECT 
         fi.id as id,
         fi.name as Name,
         fi.rating as Rating,
@@ -142,13 +140,13 @@ JOIN type t on t.id = fi.type_id
 JOIN restaurants r on r.id = fi.restaurant_id
 ORDER BY fi._created DESC
 LIMIT 3`;
-    return executeQuery(sql);
-};
+        return executeQuery(sql);
+    };
 
-//Method for pulling most upvoted 3 items added to food_items table
-export const threeHighestRatedItems = () => {
-    let sql =
-        `SELECT 
+    //Method for pulling most upvoted 3 items added to food_items table
+    threeHighestRatedItems = () => {
+        let sql =
+            `SELECT 
             fi.id as id,
             fi.name as Name,
             fi.rating as Rating,
@@ -167,7 +165,8 @@ export const threeHighestRatedItems = () => {
     JOIN restaurants r on r.id = fi.restaurant_id
     ORDER BY fi.rating DESC
     LIMIT 3`;
-    return executeQuery(sql);
-};
+        return executeQuery(sql);
+    };
+}
 
 export default Table;
