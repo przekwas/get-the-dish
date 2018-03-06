@@ -2,6 +2,7 @@ import { Router } from 'express';
 import typeRouter from './type';
 import itemRouter from './items';
 import ratingRouter from './rating';
+import homescreenRouter from './homescren';
 import testRouter from './test';
 // import authRouter from './auth';
 // import stripeDonationsRouter from './stripeDonations';
@@ -20,6 +21,7 @@ let router = Router();
 router.use('/type', typeRouter);
 router.use('/items', itemRouter);
 router.use('/rating', ratingRouter);
+router.use('/homescreen', homescreenRouter);
 router.use('/test', testRouter);
 
 export default router;

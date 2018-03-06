@@ -5,33 +5,6 @@ let router = Router();
 let typeTable = new Table('type');
 let itemTable = new Table('food_item');
 
-//Testing out custom methods on a test route
-router.get('/late', (req, res) => {
-
-    itemTable.threeHighestRatedItems()
-    .then((results) => {
-        res.json(results);
-    }).catch((err) => {
-        console.log(err);
-        res.sendStatus(500);
-    });
-
-});
-
-router.get('/hot', (req, res) => {
-
-    itemTable.threeMostRecentItems()
-    .then((results) => {
-        res.json(results);
-    }).catch((err) => {
-        console.log(err);
-        res.sendStatus(500);
-    });
-
-});
-
-
-
 router.get('/search', (req, res) => {
 
     let query = req.query;
