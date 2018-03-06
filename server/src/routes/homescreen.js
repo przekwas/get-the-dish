@@ -19,7 +19,7 @@ router.get('/latest', (req, res) => {
 //GET route for hottest 3 items in food_items table by their rating
 router.get('/hottest', (req, res) => {
 
-    itemTable.threeMostRecentItems()
+    itemTable.threeHighestRatedItems()
         .then((results) => {
             res.json(results);
         }).catch((err) => {
