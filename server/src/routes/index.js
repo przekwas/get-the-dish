@@ -2,7 +2,7 @@ import { Router } from 'express';
 import typeRouter from './type';
 import itemRouter from './items';
 import ratingRouter from './rating';
-import homescreenRouter from './homescren';
+import homescreenRouter from './homescreen';
 import testRouter from './test';
 // import authRouter from './auth';
 // import stripeDonationsRouter from './stripeDonations';
