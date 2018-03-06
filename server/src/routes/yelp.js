@@ -15,7 +15,7 @@ router.get('/search', (req, res) => {
     let text = req.query;
 
     client.autocomplete({
-        text: text
+        text: 'pizza'
       }).then(response => {
         res.json(response.jsonBody.terms[0].text);
       }).catch(error => {
