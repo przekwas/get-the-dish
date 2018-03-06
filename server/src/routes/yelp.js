@@ -16,8 +16,8 @@ router.get('/search', (req, res) => {
   
   client.search(searchRequest).then(response => {
     const firstResult = response.jsonBody.businesses[0];
-    const prettyJson = JSON.stringify(firstResult, null, 4);
-    res.json(prettyJson);
+    // const prettyJson = JSON.stringify(firstResult, null, 4);
+    res.json(firstResult);
   }).catch(e => {
     console.log(e);
     res.sendStatus(500);
