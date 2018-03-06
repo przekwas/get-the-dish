@@ -22,6 +22,6 @@ router.use('/type', typeRouter);
 router.use('/items', itemRouter);
 router.use('/rating', ratingRouter);
 router.use('/homescreen', homescreenRouter);
-// router.use('/yelp', yelpRouter);
+router.use('/yelp', yelpRouter);
 
 export default router;
