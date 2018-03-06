@@ -122,24 +122,24 @@ class Table {
     threeMostRecentItems() {
         let sql =
             `SELECT 
-        fi.id as id,
-        fi.name as Name,
-        fi.rating as Rating,
-        FORMAT(fi.price, 2) as Price,
-        t.name as FoodType,
-        r.name as RestaurantName,
-        r.latitude as RestLat,
-        r.longitude as RestLong,
-        r.display_phone as Phone,
-        r.address as StreetAddress,
-        r.city as City,
-        r.state as State,
-        r.postal_code as PostalCode
-FROM food_item fi
-JOIN type t on t.id = fi.type_id
-JOIN restaurants r on r.id = fi.restaurant_id
-ORDER BY fi._created DESC
-LIMIT 3`;
+            fi.id as id,
+            fi.name as Name,
+            fi.rating as Rating,
+            FORMAT(fi.price, 2) as Price,
+            t.name as FoodType,
+            r.name as RestaurantName,
+            r.latitude as RestLat,
+            r.longitude as RestLong,
+            r.display_phone as Phone,
+            r.address as StreetAddress,
+            r.city as City,
+            r.state as State,
+            r.postal_code as PostalCode
+        FROM food_item fi
+        JOIN type t on t.id = fi.type_id
+        JOIN restaurants r on r.id = fi.restaurant_id
+        ORDER BY fi._created DESC
+        LIMIT 3;`;
         return executeQuery(sql);
     };
 
@@ -160,11 +160,11 @@ LIMIT 3`;
             r.city as City,
             r.state as State,
             r.postal_code as PostalCode
-    FROM food_item fi
-    JOIN type t on t.id = fi.type_id
-    JOIN restaurants r on r.id = fi.restaurant_id
-    ORDER BY fi.rating DESC
-    LIMIT 3`;
+        FROM food_item fi
+        JOIN type t on t.id = fi.type_id
+        JOIN restaurants r on r.id = fi.restaurant_id
+        ORDER BY fi.rating DESC
+        LIMIT 3;`;
         return executeQuery(sql);
     };
 }

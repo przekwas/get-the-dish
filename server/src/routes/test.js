@@ -1,13 +1,14 @@
 import { Router } from 'express';
-import Table, { hesSoHotRightNow } from '../table';
+import Table from '../table';
 
 let router = Router();
 let typeTable = new Table('type');
+let itemTable = new Table('food_item');
 
 //Testing out custom methods on a test route
 router.get('/', (req, res) => {
 
-    hesSoHotRightNow()
+    itemTable.threeHighestRatedItems()
     .then((results) => {
         res.json(results);
     }).catch((err) => {

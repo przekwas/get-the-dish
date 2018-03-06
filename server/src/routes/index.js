@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import typeRouter from './type';
-import itemRouter from './item';
+import itemRouter from './items';
 import ratingRouter from './rating';
 import testRouter from './test';
 // import authRouter from './auth';
