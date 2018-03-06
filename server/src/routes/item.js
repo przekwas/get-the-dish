@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Table, { hesSoHotRightNow, threeHighestRated } from '../table';
+import Table, { threeMostRecentItems, threeHighestRatedItems } from '../table';
 
 let router = Router();
 let itemTable = new Table('food_item');
@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
 //GET route for latest 3 items added into food_items table by their _created date
 router.get('/latest', (req, res) => {
 
-    threeHighestRated()
+    threeMostRecentItems()
     .then((results) => {
         res.json(results);
     }).catch((err) => {
@@ -49,7 +49,7 @@ router.get('/latest', (req, res) => {
 //GET route for hottest 3 items in food_items table by their rating
 router.get('/hottest', (req, res) => {
 
-    hesSoHotRightNow()
+    threeHighestRatedItems()
     .then((results) => {
         res.json(results);
     }).catch((err) => {

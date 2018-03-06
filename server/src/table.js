@@ -121,32 +121,32 @@ class Table {
 }
 
 //Method for pulling latest 3 items added to food_items table
-export const hesSoHotRightNow = () => {
+export const threeMostRecentItems = () => {
     let sql =
         `SELECT 
-            fi.id as id,
-            fi.name as Name,
-            fi.rating as Rating,
-            FORMAT(fi.price, 2) as Price,
-            t.name as FoodType,
-            r.name as RestaurantName,
-            r.latitude as RestLat,
-            r.longitude as RestLong,
-            r.display_phone as Phone,
-            r.address as StreetAddress,
-            r.city as City,
-            r.state as State,
-            r.postal_code as PostalCode
-    FROM food_item fi
-    JOIN type t on t.id = fi.type_id
-    JOIN restaurants r on r.id = fi.restaurant_id
-    ORDER BY _created DESC
-    LIMIT 3`;
+        fi.id as id,
+        fi.name as Name,
+        fi.rating as Rating,
+        FORMAT(fi.price, 2) as Price,
+        t.name as FoodType,
+        r.name as RestaurantName,
+        r.latitude as RestLat,
+        r.longitude as RestLong,
+        r.display_phone as Phone,
+        r.address as StreetAddress,
+        r.city as City,
+        r.state as State,
+        r.postal_code as PostalCode
+FROM food_item fi
+JOIN type t on t.id = fi.type_id
+JOIN restaurants r on r.id = fi.restaurant_id
+ORDER BY fi._created DESC
+LIMIT 3;`;
     return executeQuery(sql);
 };
 
-//Test method for pulling most upvoted 3 items added to food_items table
-export const threeHighestRated = () => {
+//Method for pulling most upvoted 3 items added to food_items table
+export const threeHighestRatedItems = () => {
     let sql =
         `SELECT 
             fi.id as id,
@@ -165,8 +165,9 @@ export const threeHighestRated = () => {
     FROM food_item fi
     JOIN type t on t.id = fi.type_id
     JOIN restaurants r on r.id = fi.restaurant_id
-    ORDER BY rating DESC
+    ORDER BY fi.rating DESC
     LIMIT 3`;
+    return executeQuery(sql);
 };
 
 export default Table;
