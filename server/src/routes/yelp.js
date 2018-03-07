@@ -64,9 +64,14 @@ router.get('/auto', (req, res) => {
 
 });
 
-const getInfoWeNeed = (result) => { 
-  let nameResult = result.name;
-  return nameResult;
+const getInfoWeNeed = (result) => {
+  
+  let restaurantArray = [];
+
+  let nameObject = { name: result.name };
+  restaurantArray.push(nameObject);
+  return restaurantArray;
+
 };
 
 export default router;
