@@ -17,7 +17,7 @@ router.get('/search', (req, res) => {
   
   client.search(searchRequest)
   .then(response => {
-    const firstResult = response.jsonBody.businesses;
+    const firstResult = response.jsonBody.businesses.name;
     res.json(firstResult);
   }).catch(e => {
     console.log(e);
