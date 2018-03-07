@@ -68,32 +68,36 @@ const getInfoWeNeed = (result) => {
 
   let restaurantArray = [];
 
-  let nameObject = { name: result.name };
-  restaurantArray.push(nameObject);
+  let restaurantData = { name: result.name, address: result.location.address1, city: result.location.city, state: result.location.state, postal_code: result.location.zip_code, longitude: result.coordinates.longitude, latitude: result.coordinates.latitude, phone: result.phone, display_phone: result.display_phone };
 
-  let streetAddressObject = { address: result.location.address1 };
-  restaurantArray.push(streetAddressObject);
+  restaurantArray.push(restaurantData);
+  
+  // let nameObject = { name: result.name };
+  // restaurantArray.push(nameObject);
 
-  let cityObject = { city: result.location.city };
-  restaurantArray.push(cityObject);
+  // let streetAddressObject = { address: result.location.address1 };
+  // restaurantArray.push(streetAddressObject);
 
-  let stateObject = { state: result.location.state };
-  restaurantArray.push(stateObject);
+  // let cityObject = { city: result.location.city };
+  // restaurantArray.push(cityObject);
+
+  // let stateObject = { state: result.location.state };
+  // restaurantArray.push(stateObject);
   
-  let postalObject = { postal_code: result.location.zip_code };
-  restaurantArray.push(postalObject);
+  // let postalObject = { postal_code: result.location.zip_code };
+  // restaurantArray.push(postalObject);
   
-  let longitudeObject = { longitude: result.coordinates.longitude };
-  restaurantArray.push(longitudeObject);
+  // let longitudeObject = { longitude: result.coordinates.longitude };
+  // restaurantArray.push(longitudeObject);
   
-  let latitudeObject = { latitude: result.coordinates.latitude };
-  restaurantArray.push(latitudeObject);
+  // let latitudeObject = { latitude: result.coordinates.latitude };
+  // restaurantArray.push(latitudeObject);
   
-  let phoneObject = { phone: result.phone };
-  restaurantArray.push(phoneObject);
+  // let phoneObject = { phone: result.phone };
+  // restaurantArray.push(phoneObject);
   
-  let displayPhoneObject = { display_phone: result.display_phone };
-  restaurantArray.push(displayPhoneObject);
+  // let displayPhoneObject = { display_phone: result.display_phone };
+  // restaurantArray.push(displayPhoneObject);
   
 
   return restaurantArray;
