@@ -7,9 +7,9 @@ let router = Router();
 const client = yelp.client(apiKey);
 
 const searchRequest = {
-  text:'urba',
-  latitude: '33.543682',
-  longitude: '-86.779633'
+  location: 'birmingham, al'
+  // latitude: '33.543682',
+  // longitude: '-86.779633'
 };
 
 
@@ -25,5 +25,20 @@ router.get('/search', (req, res) => {
   });
 
 });
+
+router.get('/auto', (req, res) => {
+  
+  client.autocomplete(searchRequest)
+  .then(response => {
+    const firstResult = response.jsonBody.businesses;
+    res.json(firstResult);
+  }).catch(e => {
+    console.log(e);
+    res.sendStatus(500);
+  });
+
+});
+
+
 
 export default router;
