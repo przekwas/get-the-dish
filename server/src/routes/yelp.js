@@ -34,7 +34,7 @@ router.get('/search', (req, res) => {
 
 router.get('/business/:id', (req, res) => {
   
-  let id = req.param.id;
+  let id = req.params.id;
   // let businessRequest = {
   //   id: id
   //   // latitude: '33.543682',
