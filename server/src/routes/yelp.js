@@ -20,47 +20,47 @@ const autoRequest = {
 
 
 router.get('/search', (req, res) => {
-  
+
   client.search(searchRequest)
-  .then(response => {
-    const firstResult = response.jsonBody.businesses;
-    res.json(firstResult);
-  }).catch(e => {
-    console.log(e);
-    res.sendStatus(500);
-  });
+    .then(response => {
+      const firstResult = response.jsonBody.businesses;
+      res.json(firstResult);
+    }).catch(e => {
+      console.log(e);
+      res.sendStatus(500);
+    });
 
 });
 
 
 //Route to get the user's chosen business from Yelp when selected on our add item screen
 router.get('/business/:id', (req, res) => {
-  
+
   let id = req.params.id;
 
   client.business(id)
-  .then(response => {
-    const firstResult = response.jsonBody;
-    res.json(getInfoWeNeed(firstResult));
-  }).catch(e => {
-    console.log(e);
-    res.sendStatus(500);
-  });
+    .then(response => {
+      const firstResult = response.jsonBody;
+      res.json(getInfoWeNeed(firstResult));
+    }).catch(e => {
+      console.log(e);
+      res.sendStatus(500);
+    });
 
 });
 
 
 
 router.get('/auto', (req, res) => {
-  
+
   client.autocomplete(autoRequest)
-  .then(response => {
-    const firstResult = response.jsonBody.businesses;
-    res.json(firstResult);
-  }).catch(e => {
-    console.log(e);
-    res.sendStatus(500);
-  });
+    .then(response => {
+      const firstResult = response.jsonBody.businesses;
+      res.json(firstResult);
+    }).catch(e => {
+      console.log(e);
+      res.sendStatus(500);
+    });
 
 });
 
@@ -73,6 +73,28 @@ const getInfoWeNeed = (result) => {
 
   let streetAddressObject = { address: result.location.address1 };
   restaurantArray.push(streetAddressObject);
+
+  let cityObject = { city: result.location.city };
+  restaurantArray.push(cityObject);
+
+  let stateObject = { state: result.location.state };
+  restaurantArray.push(stateObject);
+  
+  let postalObject = { postal_code: result.location.zip_code };
+  restaurantArray.push(postalObject);
+  
+  let longitudeObject = { longitude: result.coordinates.longitude };
+  restaurantArray.push(longitudeObject);
+  
+  let latitudeObject = { latitude: result.coordinates.latitude };
+  restaurantArray.push(latitudeObject);
+  
+  let phoneObject = { phone: result.phone };
+  restaurantArray.push(phoneObject);
+  
+  let displayPhoneObject = { display_phone: result.display_phone };
+  restaurantArray.push(displayPhoneObject);
+  
 
   return restaurantArray;
 
