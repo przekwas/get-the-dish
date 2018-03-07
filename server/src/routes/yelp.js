@@ -65,11 +65,15 @@ router.get('/auto', (req, res) => {
 });
 
 const getInfoWeNeed = (result) => {
-  
+
   let restaurantArray = [];
 
   let nameObject = { name: result.name };
   restaurantArray.push(nameObject);
+
+  let streetAddressObject = { address: result.location.address1 };
+  restaurantArray.push(streetAddressObject);
+
   return restaurantArray;
 
 };
