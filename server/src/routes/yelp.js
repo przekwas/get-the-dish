@@ -32,6 +32,28 @@ router.get('/search', (req, res) => {
 
 });
 
+router.get('/business/:id', (req, res) => {
+  
+  let id = req.param.id;
+  // let businessRequest = {
+  //   id: id
+  //   // latitude: '33.543682',
+  //   // longitude: '-86.779633'
+  // };
+
+  client.business(id)
+  .then(response => {
+    const firstResult = response.jsonBody;
+    res.json(firstResult);
+  }).catch(e => {
+    console.log(e);
+    res.sendStatus(500);
+  });
+
+});
+
+
+
 router.get('/auto', (req, res) => {
   
   client.autocomplete(autoRequest)
