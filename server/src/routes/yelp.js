@@ -12,6 +12,12 @@ const searchRequest = {
   // longitude: '-86.779633'
 };
 
+const autoRequest = {
+  text: 'urb',
+  latitude: '33.543682',
+  longitude: '-86.779633'
+};
+
 
 router.get('/search', (req, res) => {
   
