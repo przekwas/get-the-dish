@@ -7,7 +7,9 @@ let router = Router();
 const client = yelp.client(apiKey);
 
 const searchRequest = {
-  term:'birmingham, al'
+  term:'urba',
+  latitude: '33.543682',
+  longitude: '-86.779633'
 };
 
 
