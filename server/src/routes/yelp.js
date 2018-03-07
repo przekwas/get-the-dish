@@ -34,7 +34,7 @@ router.get('/search', (req, res) => {
 
 router.get('/auto', (req, res) => {
   
-  client.autocomplete(searchRequest)
+  client.autocomplete(autoRequest)
   .then(response => {
     const firstResult = response.jsonBody.businesses;
     res.json(firstResult);
