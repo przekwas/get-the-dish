@@ -17,7 +17,6 @@ router.get('/', (req, res) => {
 
 });
 
-
 //GET route for a single food item type
 router.get('/:id', (req, res) => {
 
@@ -30,6 +29,14 @@ router.get('/:id', (req, res) => {
             console.log(err);
             res.sendStatus(500);
         });
+
+});
+
+
+router.post('/newitem', (req, res) => {
+
+    let stuff = req.body;
+    res.json(stuff);
 
 });
 

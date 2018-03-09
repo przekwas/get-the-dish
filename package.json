@@ -22,6 +22,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "express": "^4.16.2",
+    "express-async-handler": "^1.0.4",
     "isomorphic-fetch": "^2.2.1",
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
