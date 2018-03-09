@@ -35,7 +35,8 @@ router.get('/:id', (req, res) => {
 
 router.post('/newitem', (req, res) => {
 
-    res.send("Derp");
+    let stuff = req.body;
+    res.send(stuff);
 
 });
 
