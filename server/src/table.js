@@ -178,7 +178,8 @@ class Table {
     checkRestaurantExists(yelp_id) {
         let sql = `
         SELECT EXISTS(SELECT 1 FROM ${this.tableName} WHERE yelp_id = '${yelp_id}') as does_exist;`;
-        return executeQuery(sql, [yelp_id]);
+        return executeQuery(sql, [yelp_id])
+            .then((results) => results[0]);
     };
 
     //Method to get the ID of the Restaurant in the restaurants table
