@@ -54,7 +54,7 @@ router.post('/checkrest', (req, res) => {
 
             if (exist.does_exist === 1) {
 
-                restaurantTable.getIdOfRestaurant(yelp_id).then((rest_id) => res.send(rest_id));
+                return restaurantTable.getIdOfRestaurant(yelp_id).then((rest_id) => res.send(rest_id));
 
             } else {
 
