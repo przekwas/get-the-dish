@@ -185,7 +185,7 @@ class Table {
     //Method to get the ID of the Restaurant in the restaurants table
     getIdOfRestaurant(yelp_id) {
         let sql = `SELECT id FROM ${this.tableName} WHERE yelp_id = ${yelp_id};`;
-        return executeQuery(sql, [id])
+        return executeQuery(sql, [yelp_id])
             .then((results) => results[0]);
     }
 
