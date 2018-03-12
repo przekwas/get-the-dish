@@ -52,10 +52,10 @@ router.post('/checkrest', (req, res) => {
 
             if (results.does_exist === 1) {
 
-                restaurantTable.getIdOfRestaurant(yelp_id)
-                .then((idResults) => {
-                    return res.send('Dick' + idResults);
-                });
+                let idResults = restaurantTable.getIdOfRestaurant(yelp_id)
+                    .then(() => {
+                        return res.send(idResults)
+                    });
 
             } else {
 
@@ -67,6 +67,20 @@ router.post('/checkrest', (req, res) => {
             console.log(err);
             res.sendStatus(500);
         });
+
+});
+
+router.post('/test', (req, res) => {
+
+    let yelp_id = req.body.rest_id;
+    restaurantTable.getIdOfRestaurant(yelp_id)
+        .then((results) => {
+            res.json(results);
+        }).catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+
 
 });
 
