@@ -2,6 +2,7 @@ import { Router } from 'express';
 import Table from '../table';
 
 let router = Router();
+
 let itemTable = new Table('food_item');
 let restaurantTable = new Table('restaurants');
 
@@ -42,32 +43,28 @@ router.get('/:id', (req, res) => {
 
 // });
 
-router.post('/checkrest', (req, res) => {
+router.post('/checkrest', async (req, res, next) => {
 
     let yelp_id = req.body.rest_id;
 
-    restaurantTable.checkRestaurantExists(yelp_id)
-        .then((results) => {
+    try {
 
-            let exist = results[0];
+        let results = await restaurantTable.checkRestaurantExists(yelp_id);
+        let exist = await results[0];
 
-            if (exist.does_exist === 1) {
+        if (exist.does_exist === 1) {
 
-                restaurantTable.getIdOfRestaurant(yelp_id)
-                .then((stuff) => {
-                    res.send('Dick');
-                });
+            res.send('Dick');
 
-            } else {
+        } else {
 
-                res.send('Butt');
-                
-            }
+            res.send('Butt');
 
-        }).catch((err) => {
-            console.log(err);
-            res.sendStatus(500);
-        });
+        }
+
+    } catch (error) {
+    console.log(error);
+}
 
 });
 
