@@ -3,6 +3,7 @@ import Table from '../table';
 
 let router = Router();
 let itemTable = new Table('food_item');
+let restuaurantTable = new Table('restaurants');
 
 //GET route for all food items
 router.get('/', (req, res) => {
@@ -35,8 +36,9 @@ router.get('/:id', (req, res) => {
 
 router.post('/newitem', (req, res) => {
 
-    let stuff = req.body;
-    res.send(stuff);
+    let stuff = req.body.yelp_id;
+    let newStuff = stuff.jsonBody;
+    res.send(newStuff);
 
 });
 

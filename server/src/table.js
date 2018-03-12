@@ -173,6 +173,14 @@ class Table {
         LIMIT 3;`;
         return executeQuery(sql);
     };
+
+    //Method to check if restaurant's yelp_id exists or not
+    checkRestuarantExists(id) {
+        let sql = `
+        SELECT EXISTS(SELECT 1 FROM ${this.tableName} WHERE yelp_id = '${id}');`;
+        return executeQuery(sql, [id]);
+    };
+
 }
 
 export default Table;
