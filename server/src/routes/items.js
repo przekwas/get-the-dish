@@ -43,28 +43,32 @@ router.get('/:id', (req, res) => {
 
 // });
 
-router.post('/checkrest', async (req, res, next) => {
+router.post('/checkrest', (req, res) => {
 
     let yelp_id = req.body.rest_id;
 
-    try {
+    restaurantTable.checkRestaurantExists(yelp_id)
+        .then((results) => {
 
-        let results = await restaurantTable.checkRestaurantExists(yelp_id);
-        let exist = await results[0];
+            let exist = results[0];
 
-        if (exist.does_exist === 1) {
+            if (exist.does_exist === 1) {
 
-            res.send('Dick');
+                return restaurantTable.getIdOfRestaurant(yelp_id)
+                    .then((stuff) => {
+                        res.send('Dick');
+                    });
 
-        } else {
+            } else {
 
-            res.send('Butt');
+                res.send('Butt');
 
-        }
+            }
 
-    } catch (error) {
-    console.log(error);
-}
+        }).catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
 
 });
 
