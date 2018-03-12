@@ -177,7 +177,7 @@ class Table {
     //Method to check if restaurant's yelp_id exists or not
     checkRestaurantExists(yelp_id) {
         let sql = `
-        SELECT EXISTS(SELECT 1 FROM ${this.tableName} WHERE yelp_id = '${yelp_id}');`;
+        SELECT EXISTS(SELECT 1 FROM ${this.tableName} WHERE yelp_id = '${yelp_id}') as does_exist;`;
         return executeQuery(sql, [yelp_id]);
     };
 
