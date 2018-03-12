@@ -3,7 +3,7 @@ import Table from '../table';
 
 let router = Router();
 let itemTable = new Table('food_item');
-let restuaurantTable = new Table('restaurants');
+let restaurantTable = new Table('restaurants');
 
 //GET route for all food items
 router.get('/', (req, res) => {
@@ -46,14 +46,13 @@ router.post('/checkrest', (req, res) => {
 
     let yelp_id = req.body.rest_id;
 
-    restuaurantTable.checkRestaurantExists(yelp_id)
+    restaurantTable.checkRestaurantExists(yelp_id)
     .then((results) => {
-        res.send(results);
+        res.json(results);
     }).catch((error) => {
         console.log(error);
         res.sendStatus(500);
     });
-    res.send(stuff);
 
 });
 
