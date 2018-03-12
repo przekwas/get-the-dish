@@ -48,7 +48,8 @@ router.post('/checkrest', (req, res) => {
 
     restaurantTable.checkRestaurantExists(yelp_id)
         .then((results) => {
-            res.send(results[0].does_exist);
+            let stuff = results[0];
+            res.send(stuff);
         }).catch((err) => {
             console.log(err);
             res.sendStatus(500);
