@@ -42,7 +42,7 @@ router.post('/newitem', (req, res) => {
 
 });
 
-router.post('/checkrest', (req, res) => {
+router.get('/checkrest', (req, res) => {
 
     let yelp_id = req.body.rest_id;
 
