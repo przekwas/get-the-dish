@@ -52,7 +52,10 @@ router.post('/checkrest', (req, res) => {
 
             if (results.does_exist === 1) {
 
-                return restaurantTable.getIdOfRestaurant(yelp_id);
+                restaurantTable.getIdOfRestaurant(yelp_id)
+                .then((idResults) => {
+                    return res.send('Dick' + idResults);
+                });
 
             } else {
 
