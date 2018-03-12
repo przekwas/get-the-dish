@@ -47,19 +47,13 @@ router.post('/checkrest', (req, res) => {
     let yelp_id = req.body.rest_id;
 
     restaurantTable.checkRestaurantExists(yelp_id)
-    .then({results})
+        .then((results) => {
+            results[0].json();
+        }).catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
 
-    if (results.MatchResults === 1) {
-        return ((results) => {
-            // res.json(results)
-            res.send("Dick");
-        });
-    } else {
-        return ((results) => {
-            //res.json(results)
-            res.send("Butt");
-        });
-    }
 });
 
 export default router;
