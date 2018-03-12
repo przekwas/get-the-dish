@@ -76,7 +76,7 @@ router.post('/test', (req, res) => {
 
     restaurantTable.getIdOfRestaurant(yelp_id)
         .then((results) => {
-            res.json(results);
+            res.send(results);
         }).catch((err) => {
             console.log(err);
             res.sendStatus(500);
