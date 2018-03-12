@@ -34,15 +34,15 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.post('/newitem', (req, res) => {
+// router.post('/newitem', (req, res) => {
 
-    let stuff = req.body.rest_id;
-    let newStuff = stuff.jsonBody;
-    res.send(stuff);
+//     let stuff = req.body.rest_id;
+//     let newStuff = stuff.jsonBody;
+//     res.send(stuff);
 
-});
+// });
 
-router.get('/checkrest', (req, res) => {
+router.post('/checkrest', (req, res) => {
 
     let yelp_id = req.body.rest_id;
 
