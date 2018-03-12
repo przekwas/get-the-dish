@@ -55,7 +55,7 @@ router.post('/checkrest', (req, res) => {
 
                 restaurantTable.getIdOfRestaurant(yelp_id)
                 .then((stuff) => {
-                    res.json(stuff);
+                    res.send(stuff);
                 });
 
             } else {
