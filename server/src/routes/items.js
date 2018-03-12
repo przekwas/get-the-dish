@@ -45,10 +45,10 @@ router.post('/newitem', (req, res) => {
 router.post('/checkrest', (req, res) => {
 
     let yelp_id = req.body.rest_id;
-    
-    restuaurantTable.checkRestuarantExists(yelp_id)
+
+    restuaurantTable.checkRestaurantExists(yelp_id)
     .then((results) => {
-        res.json(results);
+        res.send(results);
     }).catch((error) => {
         console.log(error);
         res.sendStatus(500);
