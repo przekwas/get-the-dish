@@ -92,6 +92,7 @@ const getInfoWeNeed = (result) => {
 
     let restaurantData = {
         name: result.name,
+        yelp_id: result.id,
         address: result.location.address1,
         city: result.location.city,
         state: result.location.state,
