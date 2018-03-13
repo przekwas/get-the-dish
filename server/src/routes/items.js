@@ -55,7 +55,8 @@ router.post('/checkrest', (req, res) => {
                 return restaurantTable.getIdOfRestaurant(yelp_id)
                 .then((resultId) => {
                     // itemTable.insert()
-                    res.send(req.body.res_id);
+                    req.body.rest_id = resultId;
+                    res.send(req.body.rest_id);
                 });
 
             } else {
