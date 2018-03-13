@@ -56,7 +56,7 @@ router.post('/checkrest', (req, res) => {
                 .then((resultId) => {
                     // itemTable.insert()
                     req.body.rest_id = resultId;
-                    res.send(req.body.rest_id);
+                    res.send(req.body);
                 });
 
             } else {
