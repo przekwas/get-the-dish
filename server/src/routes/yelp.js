@@ -7,6 +7,7 @@ let router = Router();
 const client = yelp.client(apiKey);
 
 const searchRequest = {
+  term: 'food',
   latitude: '33.543682',
   longitude: '-86.779633',
   radius: '40000',
