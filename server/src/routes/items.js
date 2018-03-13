@@ -57,22 +57,25 @@ router.post('/checkrest', (req, res) => {
             if (results.does_exist === 1) {
 
                 return restaurantTable.getIdOfRestaurant(yelp_id)
-                .then((resultId) => {
-                    req.body.restaurant_id = resultId.id;
-                    itemTable.insert(req.body)
-                    .then((resultInsert) => {
-                        res.status(201).send('Coolio!');
-                    })
-                });
+                    .then((resultId) => {
+                        req.body.restaurant_id = resultId.id;
+                        itemTable.insert(req.body)
+                            .then((resultInsert) => {
+                                res.status(201).send('Coolio!');
+                            })
+                    });
 
             } else {
 
                 return client.business(yelp_id)
-                  .then((response) => {
-                    const firstResult = response.jsonBody;
-                    let neededInfo = getInfoWeNeed(firstResult);
-                    res.json(neededInfo[0]);   
-                  });
+                    .then((response) => {
+                        const firstResult = response.jsonBody;
+                        let neededInfo = getInfoWeNeed(firstResult);
+                        restaurantTable.insert(neededInfo[0])
+                            .then((resultID) => {
+                                res.send(resultID);
+                            })
+                    });
 
             }
 
@@ -86,23 +89,23 @@ router.post('/checkrest', (req, res) => {
 const getInfoWeNeed = (result) => {
 
     let restaurantArray = [];
-  
+
     let restaurantData = {
-      name: result.name,
-      address: result.location.address1,
-      city: result.location.city,
-      state: result.location.state,
-      postal_code: result.location.zip_code,
-      longitude: result.coordinates.longitude,
-      latitude: result.coordinates.latitude,
-      phone: result.phone,
-      display_phone: result.display_phone
+        name: result.name,
+        address: result.location.address1,
+        city: result.location.city,
+        state: result.location.state,
+        postal_code: result.location.zip_code,
+        longitude: result.coordinates.longitude,
+        latitude: result.coordinates.latitude,
+        phone: result.phone,
+        display_phone: result.display_phone
     };
-  
+
     restaurantArray.push(restaurantData);
-  
+
     return restaurantArray;
-  
-  };
+
+};
 
 export default router;
