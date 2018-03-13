@@ -77,32 +77,4 @@ const getInfoWeNeed = (result) => {
 
 };
 
-
-// // info = object from the form on front end
-// async addNewFoodItem(info) {
-
-//   //Step1 is to check if the Restaurant the user has selected is in our database or not
-//   let restaurantCheck = async await restaurantTable.checkRestaurant(info.restaurant.yelp_id);
-
-//   //If the restaurant IS NOT in our DB, add it and return the newly created Restaurant ID
-//   if (!restaurantCheck) {
-//     let newlyCreatedRestaurantId = async await restaurantTable.addRestaurant(getInfoWeNeed(info.restaurant));
-//     return newlyCreatedRestaurantId;
-//   //If then restaurant IS in our DB, get its Restaurant ID
-//   } else {
-//     let existingRestaurantId = async await restaurantTable.getExistingRestaurantId(info.restaurant.name);
-//     return existingRestaurantId;
-//   }
-
-//   //Step 2 is to add the new food item to our DB with the proper (new or existing) restaurant ID attached
-//   let results = async await insertFoodItem(info, restaurantId);
-
-//   //Step 3 is to return a 200 ok if the insert is successful
-//   let response => async await res.sendStatus(200);
-//   catch(error) //blahblah
-
-// }
-
-
-
 export default router;

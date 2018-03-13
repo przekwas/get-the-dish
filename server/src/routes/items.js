@@ -1,7 +1,11 @@
 import { Router } from 'express';
 import Table from '../table';
+'use strict';
+import yelp from 'yelp-fusion';
+const apiKey = process.env.YELP_KEY;
 
 let router = Router();
+const client = yelp.client(apiKey);
 
 let itemTable = new Table('food_item');
 let restaurantTable = new Table('restaurants');
@@ -63,7 +67,11 @@ router.post('/checkrest', (req, res) => {
 
             } else {
 
-                res.send('Butt');
+                return client.business(yelp_id)
+                  .then(response => {
+                    const firstResult = response.jsonBody;
+                    res.json(getInfoWeNeed(firstResult));
+                  });
 
             }
 
@@ -74,19 +82,26 @@ router.post('/checkrest', (req, res) => {
 
 });
 
-router.post('/test', (req, res) => {
+const getInfoWeNeed = (result) => {
 
-    let yelp_id = req.body.rest_id;
-
-    restaurantTable.getIdOfRestaurant(yelp_id)
-        .then((results) => {
-            res.json(results);
-        }).catch((err) => {
-            console.log(err);
-            res.sendStatus(500);
-        });
-
-
-});
+    let restaurantArray = [];
+  
+    let restaurantData = {
+      name: result.name,
+      address: result.location.address1,
+      city: result.location.city,
+      state: result.location.state,
+      postal_code: result.location.zip_code,
+      longitude: result.coordinates.longitude,
+      latitude: result.coordinates.latitude,
+      phone: result.phone,
+      display_phone: result.display_phone
+    };
+  
+    restaurantArray.push(restaurantData);
+  
+    return restaurantArray;
+  
+  };
 
 export default router;
