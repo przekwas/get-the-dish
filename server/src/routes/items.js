@@ -72,8 +72,12 @@ router.post('/checkrest', (req, res) => {
                         const firstResult = response.jsonBody;
                         let neededInfo = getInfoWeNeed(firstResult);
                         restaurantTable.insert(neededInfo[0])
-                            .then((resultID) => {
-                                res.send(resultID);
+                            .then((resultId) => {
+                                req.body.restaurant_id = resultId.id;
+                                itemTable.insert(req.body)
+                                .then((resultInsert) => {
+                                    res.status(201).send('Siiiiiiiiiiiiiiiiiiiiick!');
+                                })
                             })
                     });
 
