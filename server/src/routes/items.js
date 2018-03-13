@@ -57,7 +57,7 @@ router.post('/checkrest', (req, res) => {
                     req.body.restaurant_id = resultId.id;
                     itemTable.insert(req.body)
                     .then((resultInsert) => {
-                        res.json(resultInsert);
+                        res.status(201).send('Coolio!');
                     })
                 });
 
