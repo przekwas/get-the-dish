@@ -71,7 +71,7 @@ router.post('/checkrest', (req, res) => {
                   .then((response) => {
                     const firstResult = response.jsonBody;
                     let neededInfo = getInfoWeNeed(firstResult);
-                    res.json(neededInfo);
+                    res.json(neededInfo[0]);   
                   });
 
             }

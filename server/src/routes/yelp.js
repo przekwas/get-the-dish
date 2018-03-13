@@ -26,22 +26,6 @@ router.get('/search', (req, res) => {
 
 });
 
-//Route to get the user's chosen business from Yelp when selected on our add item screen
-router.get('/business/:id', (req, res) => {
-
-  let id = req.params.id;
-
-  client.business(id)
-    .then(response => {
-      const firstResult = response.jsonBody;
-      res.json(getInfoWeNeed(firstResult));
-    }).catch(e => {
-      console.log(e);
-      res.sendStatus(500);
-    });
-
-});
-
 // router.get('/auto', (req, res) => {
 
 //   client.autocomplete(autoRequest)
@@ -54,27 +38,5 @@ router.get('/business/:id', (req, res) => {
 //     });
 
 // });
-
-const getInfoWeNeed = (result) => {
-
-  let restaurantArray = [];
-
-  let restaurantData = {
-    name: result.name,
-    address: result.location.address1,
-    city: result.location.city,
-    state: result.location.state,
-    postal_code: result.location.zip_code,
-    longitude: result.coordinates.longitude,
-    latitude: result.coordinates.latitude,
-    phone: result.phone,
-    display_phone: result.display_phone
-  };
-
-  restaurantArray.push(restaurantData);
-
-  return restaurantArray;
-
-};
 
 export default router;
