@@ -45,7 +45,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/checkrest', (req, res) => {
 
-    let yelp_id = req.body.rest_id;
+    let yelp_id = req.body.restaurant_id;
 
     restaurantTable.checkRestaurantExists(yelp_id)
         .then((results) => {
@@ -54,9 +54,8 @@ router.post('/checkrest', (req, res) => {
 
                 return restaurantTable.getIdOfRestaurant(yelp_id)
                 .then((resultId) => {
-                    // itemTable.insert()
-                    req.body.rest_id = resultId.id;
-                    res.send(req.body);
+                    req.body.restaurant_id = resultId.id;
+                    itemTable.insert(req.body);
                 });
 
             } else {
