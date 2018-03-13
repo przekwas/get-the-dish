@@ -7,7 +7,7 @@ let typeTable = new Table('type');
 //GET route for all food types
 router.get('/', (req, res) => {
 
-    typeTable.getAll()
+    typeTable.getAllTypesAlphabetical()
     .then((results) => {
         res.json(results);
     }).catch((err) => {

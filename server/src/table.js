@@ -19,6 +19,11 @@ class Table {
         return executeQuery(sql);
     }
 
+    getAllTypesAlphabetical() {
+        let sql = `SELECT * FROM ${this.tableName} ORDER BY name`;
+        return executeQuery(sql);
+    }
+
     find(query) {
         let columns = Object.keys(query);
         let values = Object.values(query);
