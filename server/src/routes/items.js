@@ -68,9 +68,10 @@ router.post('/checkrest', (req, res) => {
             } else {
 
                 return client.business(yelp_id)
-                  .then(response => {
+                  .then((response) => {
                     const firstResult = response.jsonBody;
-                    res.json(getInfoWeNeed(firstResult));
+                    let neededInfo = getInfoWeNeed(firstResult);
+                    res.json(neededInfo);
                   });
 
             }
