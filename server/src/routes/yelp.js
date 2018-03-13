@@ -20,15 +20,8 @@ router.get('/search', (req, res) => {
 
   client.search(searchRequest)
     .then(response => {
-      const firstResult = response.jsonBody.businesses
-      searchRequest.offset = '51'
-        .then(client.search(searchRequest)
-          .then((nextResponse => {
-            const secondResult = nextResponse.jsonBody.businesses
-            firstResult.push(secondResult)
-            res.json(firstResult);
-          })))
-      // res.json(firstResult)
+      const firstResult = response.jsonBody.businesses;
+      res.json(firstResult)
     }).catch(e => {
       console.log(e);
       res.sendStatus(500);
