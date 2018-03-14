@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import Table, { hesSoHotRightNow } from '../table';
-// import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
+import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
 let itemTable = new Table('food_item');
@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
 });
 
 //PUT route to add one to a specific item's rating
-router.put('/:id',(req, res) => {
+router.put('/:id', tokenMiddleware, isLoggedIn, (req, res) => {
 
     let id = req.params.id;
 

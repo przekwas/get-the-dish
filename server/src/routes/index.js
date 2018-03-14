@@ -9,10 +9,6 @@ import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
 
-router.route('*')
-    .put(tokenMiddleware, isLoggedIn)
-    .delete(tokenMiddleware, isLoggedIn);
-
 router.use('/auth', authRouter);
 router.use('/type', typeRouter);
 router.use('/items', itemRouter);
