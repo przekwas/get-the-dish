@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import Table from '../table';
+import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 'use strict';
 import yelp from 'yelp-fusion';
 const apiKey = process.env.YELP_KEY;
@@ -40,7 +41,7 @@ router.get('/:id', (req, res) => {
 
 //POST route for adding a new food item.  If/Else to determine restaurants existence in our database.
 //If restaurant exists - pull its id.  Else, look it up on Yelp's API, pull its info, insert it into ours, and return new ID
-router.post('/checkrest', (req, res) => {
+router.post('/checkrest', tokenMiddleware, isLoggedIn, (req, res) => {
 
     let yelp_id = req.body.restaurant_id;
 
