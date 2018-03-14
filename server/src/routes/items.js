@@ -38,15 +38,8 @@ router.get('/:id', (req, res) => {
 
 });
 
-
-// router.post('/newitem', (req, res) => {
-
-//     let stuff = req.body.rest_id;
-//     let newStuff = stuff.jsonBody;
-//     res.send(stuff);
-
-// });
-
+//POST route for adding a new food item.  If/Else to determine restaurants existence in our database.
+//If restaurant exists - pull its id.  Else, look it up on Yelp's API, pull its info, insert it into ours, and return new ID
 router.post('/checkrest', (req, res) => {
 
     let yelp_id = req.body.restaurant_id;
@@ -90,6 +83,7 @@ router.post('/checkrest', (req, res) => {
 
 });
 
+//Method to strip the Yelp API response of the properties and values we need for our table
 const getInfoWeNeed = (result) => {
 
     let restaurantArray = [];
