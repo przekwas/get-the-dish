@@ -26,8 +26,7 @@ router.put('/:id',(req, res) => {
 
     itemTable.addOneToSpecificItemRating(id)
     .then((results) => {
-        newRating = results[0].Rating + 1;
-        res.send(newRating);
+        res.json(results);
     }).catch((err) => {
         console.log(err);
         res.sendStatus(500);
