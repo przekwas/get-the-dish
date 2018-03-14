@@ -27,9 +27,7 @@ router.put('/:id', tokenMiddleware, isLoggedIn, (req, res) => {
 
     itemTable.addOneToSpecificItemRating(id)
     .then((results) => {
-        newRating = results[0].Rating;
-        newRating++;
-        res.send(newRating);
+        res.status(200).send(results);
     }).catch((err) => {
         console.log(err);
         res.sendStatus(500);
