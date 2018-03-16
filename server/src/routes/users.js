@@ -21,7 +21,7 @@ router.post('/newuser', (req, res) => {
                 res.status(201).send("Added ok fam!");
             })
         }).catch((error) => {
-            next(error);
+            res.status(500).send(error);
         })
 
 });

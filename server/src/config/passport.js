@@ -18,7 +18,7 @@ function configurePassport(app) {
             .then((results) => results[0])
             .then((user) => {
                 if (user && user.hash) {
-                    checkPassword(password, user.hash)
+                    checkPassword(password, user.password)
                         .then((matches) => {
                             if (matches) {
                                 //password is correct
