@@ -21,31 +21,31 @@ router.get('/:id', (req, res) => {
 });
 
 //PUT route to add one to a specific item's rating
-router.put('/:id/?vote', tokenMiddleware, isLoggedIn, (req, res) => {
+router.put('/:id/add', tokenMiddleware, isLoggedIn, (req, res) => {
 
     let id = req.params.id;
-    let voterCondition = req.query.vote;
 
-    res.send(voterCondition);
-
-    // if (voterCondition === 'up') {
-    //     itemTable.addOneToSpecificItemRating(id)
-    //         .then((results) => {
-    //             res.status(200).send(results);
-    //         }).catch((err) => {
-    //             console.log(err);
-    //             res.sendStatus(500);
-    //         });
-    // } else {
-    //     itemTable.removeOneToSpecificItemRating(id)
-    //         .then((results) => {
-    //             res.status(200).send(results);
-    //         }).catch((err) => {
-    //             console.log(err);
-    //             res.sendStatus(500);
-    //         });
-    // }
+    itemTable.addOneToSpecificItemRating(id)
+        .then((results) => {
+            res.status(200).send(results);
+        }).catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
 
 });
 
+router.put('/:id/remove', tokenMiddleware, isLoggedIn, (req, res) => {
+
+    let id = req.params.id;
+
+    itemTable.removeOneToSpecificItemRating(id)
+        .then((results) => {
+            res.status(200).send(results);
+        }).catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+
+});
 export default router;
