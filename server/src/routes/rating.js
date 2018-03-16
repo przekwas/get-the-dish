@@ -26,23 +26,25 @@ router.put('/:id/?vote', tokenMiddleware, isLoggedIn, (req, res) => {
     let id = req.params.id;
     let voterCondition = req.query.vote;
 
-    if (voterCondition === 'up') {
-        itemTable.addOneToSpecificItemRating(id)
-            .then((results) => {
-                res.status(200).send(results);
-            }).catch((err) => {
-                console.log(err);
-                res.sendStatus(500);
-            });
-    } else {
-        itemTable.removeOneToSpecificItemRating(id)
-            .then((results) => {
-                res.status(200).send(results);
-            }).catch((err) => {
-                console.log(err);
-                res.sendStatus(500);
-            });
-    }
+    res.send(voterCondition);
+
+    // if (voterCondition === 'up') {
+    //     itemTable.addOneToSpecificItemRating(id)
+    //         .then((results) => {
+    //             res.status(200).send(results);
+    //         }).catch((err) => {
+    //             console.log(err);
+    //             res.sendStatus(500);
+    //         });
+    // } else {
+    //     itemTable.removeOneToSpecificItemRating(id)
+    //         .then((results) => {
+    //             res.status(200).send(results);
+    //         }).catch((err) => {
+    //             console.log(err);
+    //             res.sendStatus(500);
+    //         });
+    // }
 
 });
 
