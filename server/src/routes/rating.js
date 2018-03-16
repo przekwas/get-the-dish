@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
 router.put('/add/:id/?vote', tokenMiddleware, isLoggedIn, (req, res) => {
 
     let id = req.params.id;
-    let voterCondition = req.params.vote;
+    let voterCondition = req.query.vote;
 
     if (voterCondition === 'up') {
         itemTable.addOneToSpecificItemRating(id)
