@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
 //PUT route to add one to a specific item's rating
 router.put('/:id', tokenMiddleware, isLoggedIn, (req, res) => {
 
-    let id = req.param.id;
+    let id = req.params.id;
 
     itemTable.addOneToSpecificItemRating(id)
         .then((results) => {
