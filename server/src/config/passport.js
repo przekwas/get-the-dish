@@ -31,12 +31,12 @@ function configurePassport(app) {
                                     });
                             } else {
                                 //password is incorrect
-                                return done(null, false, { message: 'Invalid credentials' });
+                                return done(null, false, { message: 'Invalid PW' });
                             }
                         }).catch((error) => {throw error;});
                 } else {
                     //user email does not exist
-                    return done(null, false, { message: 'Invalid credentials' });
+                    return done(null, false, { message: 'Invalid User' });
                 }
             }).catch((err) => {
                 return done(err);
