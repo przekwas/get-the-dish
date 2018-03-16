@@ -127,7 +127,7 @@ class Table {
         return this.getSpecificItemRating(id)
     }
 
-    addOneToSpecificItemRating(id) {
+    removeOneToSpecificItemRating(id) {
         let sql =
             `UPDATE food_item fi
         SET rating = rating - 1
