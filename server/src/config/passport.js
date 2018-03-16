@@ -17,7 +17,7 @@ function configurePassport(app) {
         usersTable.find({ email })
             .then((results) => results[0])
             .then((user) => {
-                if (user && user.hash) {
+                if (user && user.password) {
                     checkPassword(password, user.password)
                         .then((matches) => {
                             if (matches) {
@@ -31,12 +31,12 @@ function configurePassport(app) {
                                     });
                             } else {
                                 //password is incorrect
-                                return done(null, false, { message: 'Invalid PW' });
+                                return done(null, false, { message: 'Invalid credentials' });
                             }
                         }).catch((error) => {throw error;});
                 } else {
                     //user email does not exist
-                    return done(null, false, { message: 'Invalid User' });
+                    return done(null, false, { message: 'Invalid credentials' });
                 }
             }).catch((err) => {
                 return done(err);
