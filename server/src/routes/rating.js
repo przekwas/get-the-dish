@@ -20,32 +20,19 @@ router.get('/:id', (req, res) => {
 
 });
 
-router.put('/remove/:id', tokenMiddleware, isLoggedIn, (req, res) => {
-
-    let id = req.params.id;
-
-    itemTable.removeOneToSpecificItemRating(id)
-        .then((results) => {
-            res.status(200).send(results);
-        }).catch((err) => {
-            console.log(err);
-            res.sendStatus(500);
-        });
-
-});
-
 //PUT route to add one to a specific item's rating
-router.put('/:id', tokenMiddleware, isLoggedIn, (req, res) => {
+router.put('/:id/?q', tokenMiddleware, isLoggedIn, (req, res) => {
 
-    let id = req.params.id;
-
-    itemTable.addOneToSpecificItemRating(id)
-        .then((results) => {
-            res.status(200).send(results);
-        }).catch((err) => {
-            console.log(err);
-            res.sendStatus(500);
-        });
+    // let id = req.params.id;
+    let q = req.query.q;
+    res.send(q);
+    // itemTable.addOneToSpecificItemRating(id)
+    //     .then((results) => {
+    //         res.status(200).send(results);
+    //     }).catch((err) => {
+    //         console.log(err);
+    //         res.sendStatus(500);
+    //     });
 
 });
 
