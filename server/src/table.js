@@ -127,6 +127,15 @@ class Table {
         return this.getSpecificItemRating(id)
     }
 
+    addOneToSpecificItemRating(id) {
+        let sql =
+            `UPDATE food_item fi
+        SET rating = rating - 1
+        WHERE fi.id = ${id};`;
+        executeQuery(sql, [id])
+        return this.getSpecificItemRating(id)
+    }
+
     //Method for pulling latest 3 items added to food_items table
     threeMostRecentItems() {
         let sql =
