@@ -6,7 +6,7 @@ let router = Router();
 let itemTable = new Table('food_item');
 
 //GET route for specifically pulling the rating of a specific item
-router.get('/:id', (req, res) => {
+router.get('/get/:id', (req, res) => {
 
     let id = req.params.id;
 
@@ -21,18 +21,15 @@ router.get('/:id', (req, res) => {
 });
 
 //PUT route to add one to a specific item's rating
-router.put('?q/:id/', tokenMiddleware, isLoggedIn, (req, res) => {
+router.put('/:id', tokenMiddleware, isLoggedIn, (req, res) => {
 
-    // let id = req.params.id;
-    let q = req.query.q;
-    res.send(q);
-    // itemTable.addOneToSpecificItemRating(id)
-    //     .then((results) => {
-    //         res.status(200).send(results);
-    //     }).catch((err) => {
-    //         console.log(err);
-    //         res.sendStatus(500);
-    //     });
+    itemTable.addOneToSpecificItemRating(id)
+        .then((results) => {
+            res.status(200).send(results);
+        }).catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
 
 });
 
