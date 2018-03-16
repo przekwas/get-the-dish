@@ -35,4 +35,18 @@ router.put('/:id', tokenMiddleware, isLoggedIn, (req, res) => {
 
 });
 
+router.post('/:id', tokenMiddleware, isLoggedIn, (req, res) => {
+
+    let id = req.params.id;
+
+    itemTable.removeOneToSpecificItemRating(id)
+        .then((results) => {
+            res.status(200).send(results);
+        }).catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+
+});
+
 export default router;
