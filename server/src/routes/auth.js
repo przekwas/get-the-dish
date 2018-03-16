@@ -19,13 +19,4 @@ router.post('/login', (req, res, next) => {
     (req, res, next);
 });
 
-router.get('/generate/:pw', (req, res, next) => {
-    generateHash(req.params.pw)
-    .then((hash) => {
-        res.send(hash);
-    }).catch((error) => {
-        next(error);
-    })
-});
-
 export default router;
