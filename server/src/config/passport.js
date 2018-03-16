@@ -27,7 +27,7 @@ function configurePassport(app) {
                                 })
                                     .then((idObj) => encode(idObj.id))
                                     .then((token) => {
-                                        return done(null, { token, userid });
+                                        return done(null, { token, userid: user.id });
                                     });
                             } else {
                                 //password is incorrect
