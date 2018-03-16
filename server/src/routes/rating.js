@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
 });
 
 //PUT route to add one to a specific item's rating
-router.put('/add/:id/?vote', tokenMiddleware, isLoggedIn, (req, res) => {
+router.put('/:id/?vote', tokenMiddleware, isLoggedIn, (req, res) => {
 
     let id = req.params.id;
     let voterCondition = req.query.vote;
