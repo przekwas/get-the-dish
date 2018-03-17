@@ -9,9 +9,6 @@ let itemTable = new Table('food_items');
 
 router.put('/:id/:userid', tokenMiddleware, isLoggedIn, (res, req) => {
 
-    let userId = req.params.userid;
-    let itemId = req.params.id;
-
-    res.status(200).send(req.params);
+    res.send(req.params);
 
 });

@@ -25,10 +25,6 @@ router.get('/:id', (req, res) => {
 router.put('/:id', tokenMiddleware, isLoggedIn, (req, res) => {
 
     let itemId = req.params.id;
-    // let userId = req.params.userid;
-
-    // usersItems.insertIntoXref(userId, itemId)
-    //     .then((resu))
 
     itemTable.addOneToSpecificItemRating(itemId)
         .then((results) => {
@@ -43,7 +39,6 @@ router.put('/:id', tokenMiddleware, isLoggedIn, (req, res) => {
 router.post('/:id', tokenMiddleware, isLoggedIn, (req, res) => {
 
     let itemId = req.params.id;
-    // let userId = req.params.userid;
 
     itemTable.removeOneToSpecificItemRating(itemId)
         .then((results) => {
