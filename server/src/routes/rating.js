@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Table, { hesSoHotRightNow } from '../table';
+import Table from '../table';
 import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
