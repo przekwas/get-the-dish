@@ -7,11 +7,12 @@ let router = Router();
 let usersItemsTable = new Table('users_items');
 let itemTable = new Table('food_items');
 
-router.put('/:itemId', tokenMiddleware, isLoggedIn, (res, req) => {
+router.put('/user/:userId/item/:itemId', tokenMiddleware, isLoggedIn, (req, res) => {
 
+    let userId = req.params.userId;
     let itemId = req.params.itemId;
 
-    res.send(itemId);
+    res.send(req.params);
 
 });
 
