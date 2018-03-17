@@ -11,7 +11,7 @@ router.put('/:itemId', tokenMiddleware, isLoggedIn, (res, req) => {
 
     let itemId = req.params.itemId;
 
-    res.send(req.params);
+    res.send(itemId);
 
 });
 
