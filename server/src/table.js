@@ -127,6 +127,19 @@ class Table {
         return this.getSpecificItemRating(id)
     }
 
+    insertIntoXref(userid, itemid) {
+        let sql =
+            `INSERT INTO ${this.tableName} (userid, itemid)
+            VALUE (${userid}, ${itemid})`;
+    }
+
+    removeFromXref(userid, itemid) {
+        let sql =
+            `DELETE FROM ${this.tableName}
+            WHERE userid = ${userid} AND itemid = ${itemid}
+            LIMIT 1`;
+    }
+
     removeOneToSpecificItemRating(id) {
         let sql =
             `UPDATE food_item fi
