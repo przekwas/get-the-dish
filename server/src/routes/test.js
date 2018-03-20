@@ -13,12 +13,21 @@ router.put('/user/:userId/item/:itemId', tokenMiddleware, isLoggedIn, (req, res)
     let itemId = req.params.itemId;
     let bodyObject = { 'userid': userId, 'itemid': itemId };
 
-    usersItemsTable.insert(bodyObject)
+    //Check if it exists in XREF table
+    usersItemsTable.checkXrefTableHasMatch(userId, itemId)
     .then((results) => {
-        res.status(201).send(results)
+        res.send(results)
     }).catch((error) => {
         res.status(500).send(error)
     })
+
+    //Inserting into XREF table with userid and itemid
+    // usersItemsTable.insert(bodyObject)
+    // .then((results) => {
+    //     res.status(201).send('Coolio!')
+    // }).catch((error) => {
+    //     res.status(500).send(error)
+    // })
 
 });
 

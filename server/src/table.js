@@ -127,13 +127,6 @@ class Table {
         return this.getSpecificItemRating(id)
     }
 
-    removeFromXref(userid, itemid) {
-        let sql =
-            `DELETE FROM ${this.tableName}
-            WHERE userid = ${userid} AND itemid = ${itemid}
-            LIMIT 1`;
-    }
-
     removeOneToSpecificItemRating(id) {
         let sql =
             `UPDATE food_item fi
@@ -198,6 +191,14 @@ class Table {
         LIMIT 3;`;
         return executeQuery(sql);
     };
+
+    //Method to check if xref table has userid:itemid match
+    checkXrefTableHasMatch(userid, itemid) {
+        let sql = `
+        SELECT EXISTS(SELECT 1 FROM ${this.tableName} WHERE userid = ${userid} AND itemid = ${itemid}) as does_exist;`;
+        return executeQuery(sql, [userid, itemid])
+            .then((results) => results[0]);
+    }
 
     //Method to check if restaurant's yelp_id exists or not
     checkRestaurantExists(yelp_id) {
