@@ -13,11 +13,11 @@ router.get('/user/:userId/', tokenMiddleware, isLoggedIn, (req, res) => {
     let userId = req.params.userId;
 
     usersItemsTable.getUserHistory(userId)
-    .then((results) => {
-        res.json(results)
-    }).catch((error) => {
-        res.status(500).send(error)
-    })
+        .then((results) => {
+            res.json(results)
+        }).catch((error) => {
+            res.status(500).send(error)
+        })
 
 });
 
@@ -33,21 +33,41 @@ router.put('/user/:userId/item/:itemId', tokenMiddleware, isLoggedIn, (req, res)
         .then((results) => {
 
             if (results.does_exist === 1) {
-                //Logic if it does exist
 
+                //Logic if it does exist
+                //Prevent user from revoting for same item -> toggle the vote on front, subtract 1 from food rating and remove row from this table
+                return itemTable.removeOneToSpecificItemRating(itemId)
+                    .then((ratingResults) => {
+                        usersItemsTable.xrefDelete(userId, itemId)
+                            .then((xrefResults) => {
+                                res.status(201).status('Aweosme!')
+                            })
+                    }).catch((error) => {
+                        res.status(500).send(error)
+                    });
 
 
 
             } else {
+
                 //Logic if it does NOT exist
+                //Toggle the vote on front, add 1 rating to item, and add to this xref table
+
+                return itemTable.addOneToSpecificItemRating(itemId)
+                    .then((ratingResults) => {
+                        usersItemsTable.insert(bodyObject)
+                            .then((xrefResults) => {
+                                res.status(201).send('Coolio!')
+                            })
+                    }).catch((error) => {
+                        res.status(500).send(error)
+                    });
+
             }
 
-
-
-
-            res.send(results)
-        }).catch((error) => {
-            res.status(500).send(error)
+            //     res.send(results)
+            // }).catch((error) => {
+            //     res.status(500).send(error)
         })
 
     //Inserting into XREF table with userid and itemid

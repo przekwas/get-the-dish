@@ -58,6 +58,11 @@ class Table {
         return executeQuery(sql);
     }
 
+    xrefDelete(userid, itemid) {
+        let sql = `DELETE FROM ${this.tableName} WHERE userid = ${userid} AND itemid = ${itemid};`;
+        return executeQuery(sql);
+    }
+
     //Get all food items with joins on restaurant_id and type_id to get their respective names
     getAllItems() {
         let sql =
