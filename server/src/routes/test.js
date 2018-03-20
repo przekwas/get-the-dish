@@ -12,7 +12,12 @@ router.put('/user/:userId/item/:itemId', tokenMiddleware, isLoggedIn, (req, res)
     let userId = req.params.userId;
     let itemId = req.params.itemId;
 
-    res.send(req.params);
+    usersItemsTable.insertIntoXref(userId, itemId)
+    .then((results) => {
+        res.json(results)
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
 
 });
 
