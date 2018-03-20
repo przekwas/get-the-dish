@@ -40,7 +40,7 @@ router.put('/user/:userId/item/:itemId', tokenMiddleware, isLoggedIn, (req, res)
                     .then((ratingResults) => {
                         usersItemsTable.xrefDelete(userId, itemId)
                             .then((xrefResults) => {
-                                res.status(202).status(`Rating reduced on ${itemId} and Xref Row Removed on ${userid} / ${itemid}`)
+                                res.status(202).send('Removed and Subtracted')
                             })
                     }).catch((error) => {
                         res.status(500).send(error)
@@ -57,7 +57,7 @@ router.put('/user/:userId/item/:itemId', tokenMiddleware, isLoggedIn, (req, res)
                     .then((ratingResults) => {
                         usersItemsTable.insert(bodyObject)
                             .then((xrefResults) => {
-                                res.status(201).send(`Rating added on ${itemId} and Xref Row Added on ${userid} / ${itemid}`)
+                                res.status(201).send('Added and Added')
                             })
                     }).catch((error) => {
                         res.status(500).send(error)
