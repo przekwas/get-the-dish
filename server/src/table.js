@@ -200,6 +200,13 @@ class Table {
             .then((results) => results[0]);
     }
 
+    getUserHistory(userid) {
+        let sql = `
+        SELECT * FROM ${this.tableName} WHERE userid = ${userid};`;
+        return executeQuery(sql, [userid])
+            .then((results) => results[0]);
+    }
+
     //Method to check if restaurant's yelp_id exists or not
     checkRestaurantExists(yelp_id) {
         let sql = `

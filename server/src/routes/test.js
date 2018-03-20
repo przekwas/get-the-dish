@@ -7,6 +7,21 @@ let router = Router();
 let usersItemsTable = new Table('users_items');
 let itemTable = new Table('food_items');
 
+//Get user history route
+router.get('/user/:userId/', tokenMiddleware, isLoggedIn, (req, res) => {
+
+    let userId = req.params.userId;
+
+    usersItemsTable.getUserHistory(userId)
+    .then((results) => {
+        res.json(results)
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
+
+});
+
+//Voting toggle route
 router.put('/user/:userId/item/:itemId', tokenMiddleware, isLoggedIn, (req, res) => {
 
     let userId = req.params.userId;
@@ -15,11 +30,25 @@ router.put('/user/:userId/item/:itemId', tokenMiddleware, isLoggedIn, (req, res)
 
     //Check if it exists in XREF table
     usersItemsTable.checkXrefTableHasMatch(userId, itemId)
-    .then((results) => {
-        res.send(results)
-    }).catch((error) => {
-        res.status(500).send(error)
-    })
+        .then((results) => {
+
+            if (results.does_exist === 1) {
+                //Logic if it does exist
+
+
+
+
+            } else {
+                //Logic if it does NOT exist
+            }
+
+
+
+
+            res.send(results)
+        }).catch((error) => {
+            res.status(500).send(error)
+        })
 
     //Inserting into XREF table with userid and itemid
     // usersItemsTable.insert(bodyObject)
